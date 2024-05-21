@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #cec6c6;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family:'Comic Sans MS', cursive;
+            font-size: 3em;
+            text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0, 0, 0, 0.15);
+        }
+        .todo-form {
+            margin-bottom: 20px;
+        }
+        .todo-input{
+            width: 85%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 2rem;
+            box-sizing: border-box;
+            font-size: 15px;
+            font-family: 'Times', serif;
+            outline: solid;
+        }
+        .add-btn {
+            width: 75px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .add-btn::after {
+            content: "+";
+        }
+        .add-btn:hover {
+            background-color: black;
+            color: white;
+        }
+        .add-btn:hover::after{
+            font-family:'Comic Sans MS', cursive;
+            content: "ADD";
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: monospace;
+        }
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .btn-edit {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>To Do List</h1>
+    <form id="todo-form" class="todo-form">
+        <input type="text" id="todo-input" class="todo-input" placeholder="Add a task...">
+        <button type="submit" class="add-btn" > </button>
+    </form>
+    <ul id="todo-list" class="list-group">
+        <!-- Todo items will be dynamically added here -->
+    </ul>
+</div>
+
+<script>
+    const todoForm = document.getElementById('todo-form');
+    const todoInput = document.getElementById('todo-input');
+    const todoList = document.getElementById('todo-list');
+
+    todoForm.addEventListener('submit', function(event) {
+        event.preventDefault(); /*如果不加這個的話會導致按下add後無法新增一個內容，導致網頁重新加載*/
+        const todoText = todoInput.value.trim();/*移除字串起始及結尾處的空白字元*/
+        if (todoText !== '') {
+            addTodoItem(todoText);/*這function定義在下面*/
+            todoInput.value = '';/*新增之後把原本輸入欄位清空*/
+        }
+        else{
+            alert("輸入為空，請輸入一個Task");
+        }
+    });
+
+    const addTodoItem = todoText => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span>${todoText}</span> 
+            <button class="btn btn-edit">Edit</button>
+            <button class="btn btn-delete">Delete</button>
+        `;
+        todoList.appendChild(li);
+    };
+
+    todoList.addEventListener('click', function(event) {
+    if (event.target.classList.contains('btn-edit')) { 
+        const todoItem = event.target.parentNode;
+        const todoText = todoItem.querySelector('span').innerText.trim(); /*得到span內的內容並移除空白字符*/
+        let newText = prompt('編輯ToDo內容:', todoText); /*彈出對話框*/
+        while (newText === '' || newText.trim() === '') { /*檢查是否為空或只包含空白字符*/
+            if (newText === '' || newText.trim() === '' ) {
+                alert('您輸入了空值，請重新輸入');
+                newText = prompt('編輯ToDo內容:', todoText.trim());
+            }
+        }
+        todoItem.querySelector('span').innerText = newText.trim(); /*更新內容*/
+    } else if (event.target.classList.contains('btn-delete')) {
+        const todoItem = event.target.parentNode;
+        todoItem.remove();
+    }
+});
+
+</script>
+
+</body>
+</html>
