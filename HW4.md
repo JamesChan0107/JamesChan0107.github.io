@@ -144,11 +144,12 @@ console.log(printTree(treeHeight2, treeGap2));
 ### **LV3**
 #### 第一題：
 ```javascript
-const print = (x) =>{
+const print = x =>{
     return x % 2 ===0 ? 'x是2的倍數' : 'x不是2的倍數' ;
 }
-let a = 79;
-console.log(print(a));
+/*測試*/
+console.log(print(87));
+console.log(print(98));
 ```
 #### 第二題：
 ```javascript
@@ -160,7 +161,7 @@ console.log(demo(['a','b','c'], 2) );
 ```
 #### 第三題：
 ```javascript
-const convert = (input) =>{
+const convert = input =>{
     const date = new Date(input);
     const year = date.getFullYear() - 1911;
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
