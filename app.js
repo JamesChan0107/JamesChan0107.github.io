@@ -1,6 +1,15 @@
 let currentPage = 1;
 let allDataLoaded = false;
 
+document.getElementById('fetch-btn').addEventListener('click', () => {
+    currentPage = 1; 
+    allDataLoaded = false;
+    loadPage(currentPage);
+    document.getElementById('next-btn').style.display = 'block';
+    document.getElementById('prev-btn').style.display = 'block';
+    document.getElementById('pn-btn-container').style.display = 'flex';
+});
+
 async function fetchContestData(page) {
     try {
         const response = await fetch(`https://memes.tw/wtf/api?contest=621&page=${page}`);
@@ -50,15 +59,6 @@ function renderData(data) {
         dataContainer.appendChild(dataItem);
     });
 }
-
-document.getElementById('fetch-btn').addEventListener('click', () => {
-    currentPage = 1;
-    allDataLoaded = false;
-    loadPage(currentPage);
-    document.getElementById('next-btn').style.display = 'block';
-    document.getElementById('prev-btn').style.display = 'block';
-    document.getElementById('pn-btn-container').style.display = 'flex';
-});
 
 document.getElementById('next-btn').addEventListener('click', () => {
     currentPage++;
