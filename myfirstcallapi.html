@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大學生日常</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            margin: 20px;
+        }
+        .titleh1{
+            text-align :center;
+            color: white;
+        }
+        .container {
+            margin-top: 20px;
+            color: white;
+        }
+        .container h2{
+            text-align :center;
+            color: white;
+        }
+        .dataItem {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 5px;
+            position: relative;
+        }
+        .dataItem a {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        .dataItem img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none; 
+        }
+        .btn-container button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: red; 
+            color: white; 
+            border: none; 
+            border-radius: 3px;
+            cursor: pointer; 
+        }
+        .fetch-btn {
+            padding: 10px;
+            margin-left: 42.5%;
+            color: white;
+            background-color: red;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;  
+        }
+
+        .fetch-btn:hover{
+            color:red;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="titleh1">大學生日常</h1>
+    <button id="fetch-btn" class="fetch-btn">按下去看看大學生們的內心世界</button>
+    <div class="container" id="container"></div>
+    <div class="btn-container" id="pn-btn-container">
+        <button id="prev-btn" style="display:none;">上一頁</button>
+        <button id="next-btn" style="display:none;">下一頁</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
